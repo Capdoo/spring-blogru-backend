@@ -1,5 +1,7 @@
 package com.blogback.blog.security.models;
 
+import com.blogback.blog.posts.models.PostModel;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,18 +30,19 @@ public class UsuarioModel {
     @JoinTable(name="usuario_roles", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_rol"))
     private Set<RolModel> roles = new HashSet<>();
 
+    @OneToMany(mappedBy="usuario")
+    private Set<PostModel> posts;
+
     public UsuarioModel() {
         super();
     }
 
     public UsuarioModel(String apellidos, String nombre, String nombreUsuario, String email, String password) {
-
         this.apellidos = apellidos;
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
-
     }
 
     public int getId() {
