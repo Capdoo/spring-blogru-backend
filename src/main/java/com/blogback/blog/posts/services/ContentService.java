@@ -8,13 +8,18 @@ import org.springframework.stereotype.Service;
 public class ContentService implements ContentRepository {
 
     @Override
-    public void savePostContent(PostModel postModel) {
+    public long createPostContent(Long idPost) {
 
+        return 2;
     }
 
     @Override
-    public void savePostComments(PostModel postModel) {
+    public long createPostComments(Long idPost) {
 
+        return 4;
     }
+
+
+
 
 }

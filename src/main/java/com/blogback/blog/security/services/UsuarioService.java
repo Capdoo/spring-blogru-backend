@@ -21,6 +21,10 @@ public class UsuarioService {
         return usuarioRepository.findByNombreUsuario(nombreUsuario);
     }
 
+    public Optional<UsuarioModel> getById(long idUsuario){
+        return usuarioRepository.findByIdUsuario(idUsuario);
+    }
+
     public boolean existsByNombreUsuario(String nombreUsuario) {
         return usuarioRepository.existsByNombreUsuario(nombreUsuario);
     }

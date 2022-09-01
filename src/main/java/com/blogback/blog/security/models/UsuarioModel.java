@@ -12,7 +12,7 @@ public class UsuarioModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long idUsuario;
 
     private String apellidos;
 
@@ -45,12 +45,12 @@ public class UsuarioModel {
         this.password = password;
     }
 
-    public int getId() {
-        return id;
+    public long getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdUsuario(long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getApellidos() {

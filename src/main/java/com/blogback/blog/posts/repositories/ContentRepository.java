@@ -5,8 +5,9 @@ import com.blogback.blog.posts.models.PostModel;
 public interface ContentRepository {
 
 
-    public void savePostContent(PostModel postModel);
-    public void savePostComments(PostModel postModel);
+    public long createPostContent(Long idPost);
+    public long createPostComments(Long idPost);
+
 
 
 

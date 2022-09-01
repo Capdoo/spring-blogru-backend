@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface PostRepository extends JpaRepository<PostModel,Long> {
 
+    Optional<PostModel> findById(Long idPost);
     Optional<PostModel> findByUsuario(UsuarioModel usuarioModel);
 
 
