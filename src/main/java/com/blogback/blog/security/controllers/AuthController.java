@@ -47,7 +47,7 @@ public class AuthController {
     @Autowired
     JwtProvider jwtProvider;
 
-    @PostMapping("/nuevo")
+    @PostMapping("/register")
     public ResponseEntity<Object> nuevo(@RequestBody NuevoUsuarioDTO nuevoUsuarioDTO, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return new ResponseEntity(new MensajeDTO("Campos mal colocados"), HttpStatus.BAD_REQUEST);
@@ -63,6 +63,7 @@ public class AuthController {
         }
 
         UsuarioModel usuarioModel = new UsuarioModel(
+                nuevoUsuarioDTO.getApellidos(),
                 nuevoUsuarioDTO.getNombre(),
                 nuevoUsuarioDTO.getNombreUsuario(),
                 nuevoUsuarioDTO.getEmail(),
@@ -70,9 +71,20 @@ public class AuthController {
         );
 
         Set<RolModel> roles = new HashSet<>();
+        //Assign user
         roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
+
+        //Assign according to json req
         if (nuevoUsuarioDTO.getRoles().contains("admin")) {
             roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
+        }
+
+        if (nuevoUsuarioDTO.getRoles().contains("super_admin")) {
+            roles.add(rolService.getByRolNombre(RolNombre.ROLE_SUPERADMIN).get());
+        }
+
+        if (nuevoUsuarioDTO.getRoles().contains("creator")) {
+            roles.add(rolService.getByRolNombre(RolNombre.ROLE_CREATOR).get());
         }
 
         usuarioModel.setRoles(roles);

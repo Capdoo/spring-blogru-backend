@@ -12,6 +12,8 @@ public class UsuarioModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String apellidos;
+
     private String nombre;
 
     @Column(unique = true)
@@ -30,12 +32,14 @@ public class UsuarioModel {
         super();
     }
 
-    public UsuarioModel(String nombre, String nombreUsuario, String email, String password) {
-        super();
+    public UsuarioModel(String apellidos, String nombre, String nombreUsuario, String email, String password) {
+
+        this.apellidos = apellidos;
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
+
     }
 
     public int getId() {
@@ -44,6 +48,14 @@ public class UsuarioModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getNombre() {

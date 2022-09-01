@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class CreateRoles /*implements CommandLineRunner*/ {
 
     @Autowired
-    RolService rolService;  
+    RolService rolService;
 
     //@Override
     public void run(String... args) throws Exception {
