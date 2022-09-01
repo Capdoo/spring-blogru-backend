@@ -1,6 +1,7 @@
 package com.blogback.blog.security.models;
 
-import com.example.demo.security.enums.RolNombre;
+
+import com.blogback.blog.security.enums.RolNombre;
 
 import javax.persistence.*;
 
