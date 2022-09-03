@@ -1,31 +1,18 @@
-package com.blogback.blog.temas.models;
+package com.blogback.blog.temas.dto;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
-import java.text.DateFormat;
+public class TemaDTO {
 
-@Entity
-@Table(name="temas")
-public class TemasModel {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTema;
-
-    //Contenido
     private String nombreTema;
-
     private String descripcionTema;
 
-    private Timestamp fechaCreacion;
-
-    public TemasModel() {
+    public TemaDTO() {
     }
 
-    public TemasModel(String nombreTema, String descripcionTema, Timestamp fechaCreacion) {
+    public TemaDTO(int idTema, String nombreTema, String descripcionTema) {
+        this.idTema = idTema;
         this.nombreTema = nombreTema;
         this.descripcionTema = descripcionTema;
-        this.fechaCreacion = fechaCreacion;
     }
 
     public int getIdTema() {
@@ -50,13 +37,5 @@ public class TemasModel {
 
     public void setDescripcionTema(String descripcionTema) {
         this.descripcionTema = descripcionTema;
-    }
-
-    public Timestamp getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(Timestamp fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
     }
 }
