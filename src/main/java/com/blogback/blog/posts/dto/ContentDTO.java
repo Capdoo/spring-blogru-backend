@@ -3,7 +3,6 @@ package com.blogback.blog.posts.dto;
 public class ContentDTO {
 
     private long id_post;
-
     private Object contenido;
 
     public ContentDTO() {

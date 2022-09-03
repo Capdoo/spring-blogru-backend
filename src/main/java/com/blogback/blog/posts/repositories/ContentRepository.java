@@ -4,13 +4,9 @@ import com.blogback.blog.posts.models.PostModel;
 
 public interface ContentRepository {
 
+    public long createPostContent(Long idContent);
 
-    public long createPostContent(Long idPost);
-    public long createPostComments(Long idPost);
+    public void savePostContent(Object postContent);
 
-
-
-
-
-
+    public boolean existsByIdPost(long idPost);
 }

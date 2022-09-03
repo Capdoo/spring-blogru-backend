@@ -17,7 +17,7 @@ public class PostModel {
     private int idSubtema;
 
     @ManyToOne
-    @JoinColumn(name="usuario_id",referencedColumnName = "id", nullable=false)
+    @JoinColumn(name="usuario_id",referencedColumnName = "idUsuario", nullable=false)
     private UsuarioModel usuario;
 
     //Mongo NonR DB

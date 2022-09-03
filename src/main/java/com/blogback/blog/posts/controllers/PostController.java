@@ -3,6 +3,7 @@ package com.blogback.blog.posts.controllers;
 import com.blogback.blog.dto.MensajeDTO;
 import com.blogback.blog.posts.dto.ContentDTO;
 import com.blogback.blog.posts.dto.PostCreateDTO;
+import com.blogback.blog.posts.services.CommentsService;
 import com.blogback.blog.posts.services.ContentService;
 import com.blogback.blog.posts.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class PostController {
     ContentService contentService;
 
     @Autowired
+    CommentsService commentsService;
+
+    @Autowired
     PostService postService;
 
     @PostMapping("/create")
@@ -36,16 +40,20 @@ public class PostController {
     @PostMapping("/setContent")
     public ResponseEntity<Object> saveContentPost(@RequestBody ContentDTO contentDTO){
 
-        //1. Iniciar contenidos y comentarios
-        long id_content = contentService.createPostContent(contentDTO.getId_post());
-        long id_comments = contentService.createPostComments(contentDTO.getId_post());
+        //1. Si no existe
+        if(!contentService.existsByIdPost(contentDTO.getId_post())){
+            //1. Iniciar contenidos y comentarios
+            long id_content = contentService.createPostContent(contentDTO.getId_post());
+            long id_comments = contentService.createPostContent(contentDTO.getId_post());
 
-        postService.setContent(contentDTO.getId_post(), id_content, id_comments);
+            postService.setContent(contentDTO.getId_post(), id_content, id_comments);
+        }
 
         //3. Insertar contenido
+        contentService.savePostContent(contentDTO.getContenido());
+        commentsService.savePostContent(contentDTO.getContenido());
 
         return new ResponseEntity<>(new MensajeDTO("Post Content Set"), HttpStatus.CREATED);
-
 
     }
 
