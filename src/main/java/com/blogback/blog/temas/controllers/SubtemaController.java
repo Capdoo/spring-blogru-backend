@@ -16,7 +16,7 @@ public class SubtemaController {
     SubtemaService subtemaService;
 
     @PostMapping
-    public ResponseEntity<Object> guardarSubtema(@RequestBody SubtemaDTO subtemaDTO){
+    public ResponseEntity<Object> crearSubtema(@RequestBody SubtemaDTO subtemaDTO){
         if(subtemaService.isExistsByNombreSubtema(subtemaDTO.getNombreSubtema())){
             return new ResponseEntity<>(new MensajeDTO("El subtema ya existe"), HttpStatus.BAD_REQUEST);
         }

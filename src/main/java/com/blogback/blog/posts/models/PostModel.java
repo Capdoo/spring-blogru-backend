@@ -1,6 +1,8 @@
 package com.blogback.blog.posts.models;
 
 import com.blogback.blog.security.models.UsuarioModel;
+import com.blogback.blog.temas.models.SubtemasModel;
+import com.blogback.blog.temas.models.TemasModel;
 
 import javax.persistence.*;
 
@@ -10,7 +12,7 @@ public class PostModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long idPost;
 
     //Metadata
     private int idTema;
@@ -23,6 +25,14 @@ public class PostModel {
     //Mongo NonR DB
     private long idContent;
     private long idComments;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tema_id", referencedColumnName = "idTema", foreignKey = @ForeignKey(name = "POST_FK_TEMA"))
+    private TemasModel temasModel;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "subtema_id", referencedColumnName = "idSubtema", foreignKey = @ForeignKey(name = "POST_FK_SUBTEMA"))
+    private SubtemasModel subtemasModel;
 
     public PostModel() {
     }
@@ -40,6 +50,14 @@ public class PostModel {
         this.usuario = usuario;
         this.idContent = idContent;
         this.idComments = idComments;
+    }
+
+    public long getIdPost() {
+        return idPost;
+    }
+
+    public void setIdPost(long idPost) {
+        this.idPost = idPost;
     }
 
     public int getIdTema() {

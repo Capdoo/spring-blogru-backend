@@ -18,8 +18,8 @@ public class TemaController {
     @Autowired
     TemaService temaService;
 
-    @PostMapping
-    public ResponseEntity<Object> ingresarTema(@RequestBody TemaDTO temaDTO){
+    @PostMapping("/create")
+    public ResponseEntity<Object> crearTema(@RequestBody TemaDTO temaDTO){
 
         if(temaService.isExistsByNombreTema(temaDTO.getNombreTema())){
             return new ResponseEntity<Object>(new MensajeDTO("El tema ya existe"), HttpStatus.BAD_REQUEST);

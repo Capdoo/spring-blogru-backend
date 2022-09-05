@@ -1,5 +1,7 @@
 package com.blogback.blog.temas.models;
 
+import com.blogback.blog.posts.models.PostModel;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -17,6 +19,9 @@ public class SubtemasModel {
     private String descripcionSubtema;
 
     private Timestamp fechaCreacion;
+
+    @OneToOne(cascade =  CascadeType.ALL,mappedBy = "subtemasModel")
+    private PostModel postModel;
 
     public SubtemasModel() {
     }

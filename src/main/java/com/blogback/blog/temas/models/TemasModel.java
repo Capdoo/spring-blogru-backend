@@ -1,5 +1,7 @@
 package com.blogback.blog.temas.models;
 
+import com.blogback.blog.posts.models.PostModel;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -18,6 +20,9 @@ public class TemasModel {
     private String descripcionTema;
 
     private Timestamp fechaCreacion;
+
+    @OneToOne(cascade =  CascadeType.ALL,mappedBy = "temasModel")
+    private PostModel postModel;
 
     public TemasModel() {
     }
