@@ -18,6 +18,9 @@ public class SubtemasModel {
 
     private Timestamp fechaCreacion;
 
+    public SubtemasModel() {
+    }
+
     public SubtemasModel(String nombreSubtema, String descripcionSubtema, Timestamp fechaCreacion) {
         this.nombreSubtema = nombreSubtema;
         this.descripcionSubtema = descripcionSubtema;

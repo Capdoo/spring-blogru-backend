@@ -24,7 +24,7 @@ public class TemaController {
         if(temaService.isExistsByNombreTema(temaDTO.getNombreTema())){
             return new ResponseEntity<Object>(new MensajeDTO("El tema ya existe"), HttpStatus.BAD_REQUEST);
         }
-        
+
         temaService.guardarTema(temaDTO);
 
         return new ResponseEntity<>(new MensajeDTO("Tema creado correctamente"), HttpStatus.CREATED);
