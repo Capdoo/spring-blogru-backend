@@ -6,12 +6,10 @@ public class PostCreateDTO {
     private int tema_id;
     private int subtema_id;
 
-    public PostCreateDTO(int user_id, int tema_id) {
-        this.user_id = user_id;
-        this.tema_id = tema_id;
+    public PostCreateDTO() {
     }
 
-    public PostCreateDTO(int user_id, int tema_id, int subtema_id, long content_id, long comments_id) {
+    public PostCreateDTO(int user_id, int tema_id, int subtema_id) {
         this.user_id = user_id;
         this.tema_id = tema_id;
         this.subtema_id = subtema_id;

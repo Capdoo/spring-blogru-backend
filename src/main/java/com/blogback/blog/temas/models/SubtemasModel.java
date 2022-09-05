@@ -63,4 +63,12 @@ public class SubtemasModel {
     public void setFechaCreacion(Timestamp fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
+
+    public PostModel getPostModel() {
+        return postModel;
+    }
+
+    public void setPostModel(PostModel postModel) {
+        this.postModel = postModel;
+    }
 }

@@ -10,6 +10,7 @@ import java.util.Optional;
 @Repository
 public interface TemaRepository extends JpaRepository<TemasModel,Integer> {
 
+
     public Optional<TemasModel> findByIdTema(int idTema);
     public Optional<TemasModel> findByNombreTema(String nombreTema);
     public List<TemasModel> findAll();

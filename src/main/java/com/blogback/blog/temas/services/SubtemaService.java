@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SubtemaService {
@@ -40,9 +41,26 @@ public class SubtemaService {
         return listaSubtemas;
     }
 
+    public boolean isExistsAllSubtemas(){
+        List<SubtemasModel> subtemasModelList = subtemaRepository.findAll();
+        if(subtemasModelList.isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
     public boolean isExistsByNombreSubtema(String nombreSubtema){
-        int idSubtema = subtemaRepository.findByNombreSubtema(nombreSubtema).get().getIdSubtema();
-        return subtemaRepository.existsById(idSubtema);
+        Optional<SubtemasModel> subTemaModelOptional = subtemaRepository.findByNombreSubtema(nombreSubtema);
+
+        if(subTemaModelOptional.isPresent()){
+            return false;
+        }
+        return false;
+
+    }
+
+    public Optional<SubtemasModel> getById(int idSubtema){
+        return subtemaRepository.findById(idSubtema);
     }
 
 }

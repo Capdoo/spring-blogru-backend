@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TemaService {
@@ -38,9 +39,25 @@ public class TemaService {
         return listaTemas;
     }
 
+    public boolean isExistsAllTemas(){
+        List<TemasModel> temasModelOptional = temaRepository.findAll();
+        if(temasModelOptional.isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
     public boolean isExistsByNombreTema(String nombreTema){
-        int idTema = temaRepository.findByNombreTema(nombreTema).get().getIdTema();
-        return temaRepository.existsById(idTema);
+        Optional<TemasModel> temasModelOptional = temaRepository.findByNombreTema(nombreTema);
+
+        if(temasModelOptional.isPresent()){
+            return false;
+        }
+        return false;
+    }
+
+    public Optional<TemasModel> getById(int idTema){
+        return temaRepository.findByIdTema(idTema);
     }
 
 

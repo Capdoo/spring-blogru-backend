@@ -15,8 +15,6 @@ public class PostModel {
     private long idPost;
 
     //Metadata
-    private int idTema;
-    private int idSubtema;
 
     @ManyToOne
     @JoinColumn(name="usuario_id",referencedColumnName = "idUsuario", nullable=false)
@@ -30,27 +28,19 @@ public class PostModel {
     @JoinColumn(name = "tema_id", referencedColumnName = "idTema", foreignKey = @ForeignKey(name = "POST_FK_TEMA"))
     private TemasModel temasModel;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "subtema_id", referencedColumnName = "idSubtema", foreignKey = @ForeignKey(name = "POST_FK_SUBTEMA"))
     private SubtemasModel subtemasModel;
 
     public PostModel() {
     }
 
-    public PostModel(int idTema, int idSubtema, UsuarioModel usuario) {
-        this.idTema = idTema;
-        this.idSubtema = idSubtema;
+    public PostModel(UsuarioModel usuario, TemasModel temasModel, SubtemasModel subtemasModel) {
         this.usuario = usuario;
+        this.temasModel = temasModel;
+        this.subtemasModel = subtemasModel;
     }
 
-    public PostModel(int idTema, int idSubtema, UsuarioModel usuario, long idContent, long idComments) {
-
-        this.idTema = idTema;
-        this.idSubtema = idSubtema;
-        this.usuario = usuario;
-        this.idContent = idContent;
-        this.idComments = idComments;
-    }
 
     public long getIdPost() {
         return idPost;
@@ -60,20 +50,20 @@ public class PostModel {
         this.idPost = idPost;
     }
 
-    public int getIdTema() {
-        return idTema;
+    public TemasModel getTemasModel() {
+        return temasModel;
     }
 
-    public void setIdTema(int idTema) {
-        this.idTema = idTema;
+    public void setTemasModel(TemasModel temasModel) {
+        this.temasModel = temasModel;
     }
 
-    public int getIdSubtema() {
-        return idSubtema;
+    public SubtemasModel getSubtemasModel() {
+        return subtemasModel;
     }
 
-    public void setIdSubtema(int idSubtema) {
-        this.idSubtema = idSubtema;
+    public void setSubtemasModel(SubtemasModel subtemasModel) {
+        this.subtemasModel = subtemasModel;
     }
 
     public UsuarioModel getUsuario() {
