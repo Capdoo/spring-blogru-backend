@@ -1,10 +1,9 @@
 package com.blogback.blog.posts.controllers;
 
 import com.blogback.blog.dto.MensajeDTO;
-import com.blogback.blog.posts.dto.ContentDTO;
 import com.blogback.blog.posts.dto.PostCreateDTO;
-import com.blogback.blog.posts.services.CommentsService;
-import com.blogback.blog.posts.services.ContentService;
+import com.blogback.blog.posts.dto.PostDataDTO;
+import com.blogback.blog.posts.services.PostDataService;
 import com.blogback.blog.posts.services.PostService;
 import com.blogback.blog.security.services.UsuarioService;
 import com.blogback.blog.temas.services.SubtemaService;
@@ -23,10 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PostController {
 
     @Autowired
-    ContentService contentService;
-
-    @Autowired
-    CommentsService commentsService;
+    PostDataService postDataService;
 
     @Autowired
     PostService postService;
@@ -65,31 +61,30 @@ public class PostController {
         //Guardar Metadata del Post
         postService.saveFirst(postCreateDTO);
 
-        return new ResponseEntity<>(new MensajeDTO("Post Guardado Correctamente"), HttpStatus.CREATED);
+        return new ResponseEntity<>(new MensajeDTO("Post Creado Correctamente"), HttpStatus.CREATED);
 
     }
 
     @PreAuthorize("hasRole('ROLE_CREATOR') or hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')")
     @PostMapping("/setContent")
-    public ResponseEntity<Object> saveContentPost(@RequestBody ContentDTO contentDTO){
+    public ResponseEntity<Object> setContentPost(@RequestBody PostDataDTO postDataDTO){
 
-        //1. Si no existe
-        if(!contentService.existsByIdPost(contentDTO.getId_post())){
-            //1. Iniciar contenidos y comentarios
-            long id_content = contentService.createPostContent(contentDTO.getId_post());
-            long id_comments = contentService.createPostContent(contentDTO.getId_post());
-
-            postService.setContent(contentDTO.getId_post(), id_content, id_comments);
+        //1. If it does exist
+        if(postDataService.existsPostDataByIdPost(postDataDTO.getIdPost())){
+            return new ResponseEntity<>(new MensajeDTO("PostData already exists"), HttpStatus.BAD_REQUEST);
         }
 
-        //3. Insertar contenido
-        contentService.savePostContent(contentDTO.getContenido());
-        commentsService.savePostContent(contentDTO.getContenido());
+        //Create new PostData:MongoDB
+        postDataService.save(postDataDTO);
 
         return new ResponseEntity<>(new MensajeDTO("Post Content Set"), HttpStatus.CREATED);
 
     }
 
+    @PostMapping("/test")
+    public ResponseEntity<Object> testContent(@RequestBody PostDataDTO postDataDTO){
 
+        return new ResponseEntity<>(postDataDTO.getContent(), HttpStatus.CREATED);
+    }
 
 }

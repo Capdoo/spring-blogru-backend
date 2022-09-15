@@ -21,8 +21,6 @@ public class PostModel {
     private UsuarioModel usuario;
 
     //Mongo NonR DB
-    private long idContent;
-    private long idComments;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tema_id", referencedColumnName = "idTema", foreignKey = @ForeignKey(name = "POST_FK_TEMA"))
@@ -74,21 +72,6 @@ public class PostModel {
         this.usuario = usuario;
     }
 
-    public long getIdContent() {
-        return idContent;
-    }
-
-    public void setIdContent(long idContent) {
-        this.idContent = idContent;
-    }
-
-    public long getIdComments() {
-        return idComments;
-    }
-
-    public void setIdComments(long idComments) {
-        this.idComments = idComments;
-    }
 }
 
 

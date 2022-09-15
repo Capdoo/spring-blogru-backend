@@ -39,25 +39,15 @@ public class PostService {
         Optional<TemasModel> temasModel = temaService.getById(postCreateDTO.getTema_id());
         Optional<SubtemasModel> subtemasModel = subtemaService.getById(postCreateDTO.getSubtema_id());
 
-
         PostModel postModel = new PostModel();
         postModel.setUsuario(usuarioCreador.get());
         postModel.setTemasModel(temasModel.get());
         postModel.setSubtemasModel(subtemasModel.get());
 
-        System.out.println("Temas model nombre"+temasModel.get().getNombreTema());
-
-
-        System.out.println("Sub temas model nombre"+subtemasModel.get().getNombreSubtema());
-        System.out.println("Sub temas model nombre"+subtemasModel.get().getIdSubtema());
-        System.out.println("Sub temas model nombre"+subtemasModel.get().getFechaCreacion());
-
-
-
         postRepository.save(postModel);
 
     }
-
+/*
     public void setContent(long idPost, long idContent, long idComments){
         PostModel postIndicado = postRepository.findById(idPost).get();
             postIndicado.setIdContent(idContent);
@@ -65,6 +55,7 @@ public class PostService {
         postRepository.save(postIndicado);
     }
 
+ */
     public boolean isUserACreator(long id_usuario){
         UsuarioModel usuarioModel = usuarioService.getById(id_usuario).get();
         List<String> listaRoles = usuarioService.getRolesString(id_usuario);
