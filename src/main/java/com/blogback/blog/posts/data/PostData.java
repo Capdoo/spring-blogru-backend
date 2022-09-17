@@ -1,5 +1,7 @@
 package com.blogback.blog.posts.data;
 
+import com.blogback.blog.posts.contents.PostDataContentDTO;
+import com.blogback.blog.posts.contents.SectionsDTO;
 import com.blogback.blog.posts.dto.CommentDTO;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,23 +13,22 @@ import java.util.List;
 @Document(collection="posts")
 public class PostData {
 
-
     private long idPostData;
 
     private String title;
 
     private List<CommentDTO> comments;
 
-    private Object content;
+    private List<SectionsDTO> sections;
 
     public PostData() {
     }
 
-    public PostData(long idPostData, String title, List<CommentDTO> comments, Object content) {
+    public PostData(long idPostData, String title, List<CommentDTO> comments, List<SectionsDTO> sections) {
         this.idPostData = idPostData;
         this.title = title;
         this.comments = comments;
-        this.content = content;
+        this.sections = sections;
     }
 
     public long getIdPostData() {
@@ -54,11 +55,11 @@ public class PostData {
         this.comments = comments;
     }
 
-    public Object getContent() {
-        return content;
+    public List<SectionsDTO> getSections() {
+        return sections;
     }
 
-    public void setContent(Object content) {
-        this.content = content;
+    public void setSections(List<SectionsDTO> sections) {
+        this.sections = sections;
     }
 }

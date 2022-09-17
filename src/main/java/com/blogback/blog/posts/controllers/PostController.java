@@ -1,8 +1,8 @@
 package com.blogback.blog.posts.controllers;
 
 import com.blogback.blog.dto.MensajeDTO;
+import com.blogback.blog.posts.contents.PostDataContentDTO;
 import com.blogback.blog.posts.dto.PostCreateDTO;
-import com.blogback.blog.posts.dto.PostDataDTO;
 import com.blogback.blog.posts.services.PostDataService;
 import com.blogback.blog.posts.services.PostService;
 import com.blogback.blog.security.services.UsuarioService;
@@ -61,30 +61,32 @@ public class PostController {
         //Guardar Metadata del Post
         postService.saveFirst(postCreateDTO);
 
+        //Save emptu post in Mongo db : TO DO
+
         return new ResponseEntity<>(new MensajeDTO("Post Creado Correctamente"), HttpStatus.CREATED);
 
     }
 
     @PreAuthorize("hasRole('ROLE_CREATOR') or hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')")
     @PostMapping("/setContent")
-    public ResponseEntity<Object> setContentPost(@RequestBody PostDataDTO postDataDTO){
+    public ResponseEntity<Object> setContentPost(@RequestBody PostDataContentDTO postDataContentDTO){
 
         //1. If it does exist
-        if(postDataService.existsPostDataByIdPost(postDataDTO.getIdPost())){
+        if(postDataService.existsPostDataByIdPost(postDataContentDTO.getIdPost())){
             return new ResponseEntity<>(new MensajeDTO("PostData already exists"), HttpStatus.BAD_REQUEST);
         }
 
         //Create new PostData:MongoDB
-        postDataService.save(postDataDTO);
+        postDataService.save(postDataContentDTO);
 
         return new ResponseEntity<>(new MensajeDTO("Post Content Set"), HttpStatus.CREATED);
 
     }
 
     @PostMapping("/test")
-    public ResponseEntity<Object> testContent(@RequestBody PostDataDTO postDataDTO){
+    public ResponseEntity<Object> testContent(@RequestBody PostDataContentDTO postDataContentDTO){
 
-        return new ResponseEntity<>(postDataDTO.getContent(), HttpStatus.CREATED);
+        return new ResponseEntity<>(postDataContentDTO.getListSections(), HttpStatus.CREATED);
     }
 
 }
