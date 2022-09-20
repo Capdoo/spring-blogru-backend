@@ -1,8 +1,9 @@
 package com.blogback.blog.posts.controllers;
 
 import com.blogback.blog.dto.MensajeDTO;
+import com.blogback.blog.postdata.services.PostDataService;
 import com.blogback.blog.posts.dto.CommentDTO;
-import com.blogback.blog.posts.services.PostDataService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

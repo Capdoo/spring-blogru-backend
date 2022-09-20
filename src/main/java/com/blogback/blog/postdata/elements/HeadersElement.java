@@ -1,27 +1,27 @@
-package com.blogback.blog.posts.contents;
+package com.blogback.blog.postdata.elements;
 
-public class HeadersDTO {
+public class HeadersElement {
 
-    private long idHeader;
+    private int idHeader;
 
     private String content;
 
     private boolean isVisible;
 
-    public HeadersDTO() {
+    public HeadersElement() {
     }
 
-    public HeadersDTO(long idHeader, String content, boolean isVisible) {
+    public HeadersElement(int idHeader, String content, boolean isVisible) {
         this.idHeader = idHeader;
         this.content = content;
         this.isVisible = isVisible;
     }
 
-    public long getIdHeader() {
+    public int getIdHeader() {
         return idHeader;
     }
 
-    public void setIdHeader(long idHeader) {
+    public void setIdHeader(int idHeader) {
         this.idHeader = idHeader;
     }
 

@@ -1,9 +1,8 @@
 package com.blogback.blog.posts.controllers;
 
 import com.blogback.blog.dto.MensajeDTO;
-import com.blogback.blog.posts.contents.PostDataContentDTO;
+import com.blogback.blog.postdata.dto.PostDataContentDTO;
 import com.blogback.blog.posts.dto.PostCreateDTO;
-import com.blogback.blog.posts.services.PostDataService;
 import com.blogback.blog.posts.services.PostService;
 import com.blogback.blog.security.services.UsuarioService;
 import com.blogback.blog.temas.services.SubtemaService;
@@ -20,9 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/posts")
 public class PostController {
-
-    @Autowired
-    PostDataService postDataService;
 
     @Autowired
     PostService postService;
@@ -61,27 +57,13 @@ public class PostController {
         //Guardar Metadata del Post
         postService.saveFirst(postCreateDTO);
 
-        //Save emptu post in Mongo db : TO DO
-
         return new ResponseEntity<>(new MensajeDTO("Post Creado Correctamente"), HttpStatus.CREATED);
 
     }
 
-    @PreAuthorize("hasRole('ROLE_CREATOR') or hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')")
-    @PostMapping("/setContent")
-    public ResponseEntity<Object> setContentPost(@RequestBody PostDataContentDTO postDataContentDTO){
 
-        //1. If it does exist
-        if(postDataService.existsPostDataByIdPost(postDataContentDTO.getIdPost())){
-            return new ResponseEntity<>(new MensajeDTO("PostData already exists"), HttpStatus.BAD_REQUEST);
-        }
 
-        //Create new PostData:MongoDB
-        postDataService.save(postDataContentDTO);
-
-        return new ResponseEntity<>(new MensajeDTO("Post Content Set"), HttpStatus.CREATED);
-
-    }
+    //Only test
 
     @PostMapping("/test")
     public ResponseEntity<Object> testContent(@RequestBody PostDataContentDTO postDataContentDTO){

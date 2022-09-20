@@ -1,5 +1,6 @@
-package com.blogback.blog.posts.contents;
+package com.blogback.blog.postdata.dto;
 
+import com.blogback.blog.postdata.elements.SectionsElement;
 import com.blogback.blog.posts.dto.CommentDTO;
 
 import java.util.List;
@@ -10,14 +11,14 @@ public class PostDataContentDTO {
 
     private String title;
 
-    private List<SectionsDTO> listSections;
+    private List<SectionsElement> listSections;
 
     private List<CommentDTO> listComments;
 
     public PostDataContentDTO() {
     }
 
-    public PostDataContentDTO(long idPost, String title, List<SectionsDTO> listSections, List<CommentDTO> listComments) {
+    public PostDataContentDTO(long idPost, String title, List<SectionsElement> listSections, List<CommentDTO> listComments) {
         this.idPost = idPost;
         this.title = title;
         this.listSections = listSections;
@@ -40,11 +41,11 @@ public class PostDataContentDTO {
         this.title = title;
     }
 
-    public List<SectionsDTO> getListSections() {
+    public List<SectionsElement> getListSections() {
         return listSections;
     }
 
-    public void setListSections(List<SectionsDTO> listSections) {
+    public void setListSections(List<SectionsElement> listSections) {
         this.listSections = listSections;
     }
 

@@ -1,23 +1,23 @@
-package com.blogback.blog.posts.contents;
+package com.blogback.blog.postdata.elements;
 
 import java.util.List;
 
-public class SectionsDTO {
+public class SectionsElement {
 
-    private long idSection;
+    private int idSection;
 
     private String nameSection;
 
     private boolean isVisibleName;
 
-    private List<HeadersDTO> listHeaders;
+    private List<HeadersElement> listHeaders;
 
-    private List<ParagraphsDTO> listParagraphs;
+    private List<ParagraphsElement> listParagraphs;
 
-    public SectionsDTO() {
+    public SectionsElement() {
     }
 
-    public SectionsDTO(long idSection, String nameSection, boolean isVisibleName, List<HeadersDTO> listHeaders, List<ParagraphsDTO> listParagraphs) {
+    public SectionsElement(int idSection, String nameSection, boolean isVisibleName, List<HeadersElement> listHeaders, List<ParagraphsElement> listParagraphs) {
         this.idSection = idSection;
         this.nameSection = nameSection;
         this.isVisibleName = isVisibleName;
@@ -25,11 +25,11 @@ public class SectionsDTO {
         this.listParagraphs = listParagraphs;
     }
 
-    public long getIdSection() {
+    public int getIdSection() {
         return idSection;
     }
 
-    public void setIdSection(long idSection) {
+    public void setIdSection(int idSection) {
         this.idSection = idSection;
     }
 
@@ -49,19 +49,19 @@ public class SectionsDTO {
         isVisibleName = visibleName;
     }
 
-    public List<HeadersDTO> getListHeaders() {
+    public List<HeadersElement> getListHeaders() {
         return listHeaders;
     }
 
-    public void setListHeaders(List<HeadersDTO> listHeaders) {
+    public void setListHeaders(List<HeadersElement> listHeaders) {
         this.listHeaders = listHeaders;
     }
 
-    public List<ParagraphsDTO> getListParagraphs() {
+    public List<ParagraphsElement> getListParagraphs() {
         return listParagraphs;
     }
 
-    public void setListParagraphs(List<ParagraphsDTO> listParagraphs) {
+    public void setListParagraphs(List<ParagraphsElement> listParagraphs) {
         this.listParagraphs = listParagraphs;
     }
 }

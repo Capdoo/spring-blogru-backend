@@ -1,15 +1,11 @@
-package com.blogback.blog.posts.repositories;
+package com.blogback.blog.postdata.repositories;
 
-import com.blogback.blog.posts.data.PostData;
+import com.blogback.blog.postdata.data.PostData;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
-@Repository
 public interface PostDataRepository extends MongoRepository<PostData, Long> {
-
     public Optional<PostData> findPostDataByIdPostData(long idPostData);
 
     public void deleteByIdPostData(long idPostData);

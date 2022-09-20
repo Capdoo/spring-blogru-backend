@@ -1,38 +1,38 @@
-package com.blogback.blog.posts.contents;
+package com.blogback.blog.postdata.elements;
 
-public class ParagraphsDTO {
+public class ParagraphsElement {
 
-    private long idParagraph;
+    private int idParagraph;
 
-    private long idHeader;
+    private int idHeader;
 
     private String content;
 
     private boolean isVisible;
 
-    public ParagraphsDTO() {
+    public ParagraphsElement() {
     }
 
-    public ParagraphsDTO(long idParagraph, long idHeader, String content, boolean isVisible) {
+    public ParagraphsElement(int idParagraph, int idHeader, String content, boolean isVisible) {
         this.idParagraph = idParagraph;
         this.idHeader = idHeader;
         this.content = content;
         this.isVisible = isVisible;
     }
 
-    public long getIdParagraph() {
+    public int getIdParagraph() {
         return idParagraph;
     }
 
-    public void setIdParagraph(long idParagraph) {
+    public void setIdParagraph(int idParagraph) {
         this.idParagraph = idParagraph;
     }
 
-    public long getIdHeader() {
+    public int getIdHeader() {
         return idHeader;
     }
 
-    public void setIdHeader(long idHeader) {
+    public void setIdHeader(int idHeader) {
         this.idHeader = idHeader;
     }
 

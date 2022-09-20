@@ -1,17 +1,14 @@
-package com.blogback.blog.posts.data;
+package com.blogback.blog.postdata.data;
 
-import com.blogback.blog.posts.contents.PostDataContentDTO;
-import com.blogback.blog.posts.contents.SectionsDTO;
+import com.blogback.blog.postdata.elements.SectionsElement;
 import com.blogback.blog.posts.dto.CommentDTO;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.List;
 
 @Document(collection="posts")
 public class PostData {
+
 
     private long idPostData;
 
@@ -19,12 +16,12 @@ public class PostData {
 
     private List<CommentDTO> comments;
 
-    private List<SectionsDTO> sections;
+    private List<SectionsElement> sections;
 
     public PostData() {
     }
 
-    public PostData(long idPostData, String title, List<CommentDTO> comments, List<SectionsDTO> sections) {
+    public PostData(long idPostData, String title, List<CommentDTO> comments, List<SectionsElement> sections) {
         this.idPostData = idPostData;
         this.title = title;
         this.comments = comments;
@@ -55,11 +52,11 @@ public class PostData {
         this.comments = comments;
     }
 
-    public List<SectionsDTO> getSections() {
+    public List<SectionsElement> getSections() {
         return sections;
     }
 
-    public void setSections(List<SectionsDTO> sections) {
+    public void setSections(List<SectionsElement> sections) {
         this.sections = sections;
     }
 }
