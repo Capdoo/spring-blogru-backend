@@ -19,7 +19,6 @@ public class PostDataController {
     @Autowired
     PostDataService postDataService;
 
-
     @PreAuthorize("hasRole('ROLE_CREATOR') or hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')")
     @PostMapping("/create")
     public ResponseEntity<Object> createContentPost(@RequestBody PostDataContentDTO postDataContentDTO){
@@ -58,5 +57,7 @@ public class PostDataController {
         postDataService.deletePostDataById(idPost);
         return new ResponseEntity<>(new MensajeDTO("PostData deleted"), HttpStatus.ACCEPTED);
     }
+
+    //Update By Element
 
 }
