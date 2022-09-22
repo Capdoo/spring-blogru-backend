@@ -58,6 +58,4 @@ public class PostDataController {
         return new ResponseEntity<>(new MensajeDTO("PostData deleted"), HttpStatus.ACCEPTED);
     }
 
-    //Update By Element
-
 }
