@@ -68,6 +68,7 @@ public class SectionService {
         return sectionDTO;
     }
 
+    //READ ALL
     public List<SectionDTO> readAllSections(long idPostData){
         List<SectionDTO> newListSectionsDTO = new ArrayList<SectionDTO>();
 
@@ -86,6 +87,26 @@ public class SectionService {
         }
         return newListSectionsDTO;
     }
+
+    //UPDATE SECTION
+    public void updateSection(SectionDTO sectionDTO){
+        //Only update name
+        String newNameSection = sectionDTO.getNameSection();
+
+        Query query = new Query();
+
+        query.addCriteria(Criteria.where("idPostData")
+                .is(sectionDTO.getIdPostData()));
+
+        query.addCriteria(Criteria.where("sections.idSection")
+                .is(sectionDTO.getIdSection()));
+
+        Update update = new Update();
+        update.set("sections.$.nameSection", newNameSection);
+
+        mongoTemplate.findAndModify(query,update, new FindAndModifyOptions().returnNew(true), PostData.class);
+    }
+
 
     public boolean existsSectionByIdPostData(long idPostData, int idSection){
         boolean res = false;

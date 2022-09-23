@@ -23,10 +23,6 @@ public class SectionsController {
     @Autowired
     SectionService sectionService;
 
-    @Autowired
-    HeaderService headerService;
-
-
     //Create
     @PreAuthorize("hasRole('ROLE_CREATOR') or hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')")
     @PostMapping("/create")
@@ -71,7 +67,17 @@ public class SectionsController {
         return new ResponseEntity<>(listSectionsDTO, HttpStatus.CREATED);
     }
     //Update
+    @PreAuthorize("hasRole('ROLE_CREATOR') or hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')")
+    @PutMapping("/update")
+    public ResponseEntity<Object> updateSection(@RequestBody SectionDTO sectionDTO){
+        if(!postDataService.existsPostDataByIdPost(sectionDTO.getIdPostData())){
+            return new ResponseEntity<>(new MensajeDTO("Post Data does not exist"), HttpStatus.BAD_REQUEST);
+        }
 
+        sectionService.updateSection(sectionDTO);
+
+        return new ResponseEntity<>(new MensajeDTO("Section updated"), HttpStatus.CREATED);
+    }
 
     //Delete
 
