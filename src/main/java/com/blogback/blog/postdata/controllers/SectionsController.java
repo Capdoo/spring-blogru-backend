@@ -9,10 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/postdata/sections")
@@ -43,9 +42,34 @@ public class SectionsController {
     }
 
 
-    //Read
+    //Read unique
+    @PreAuthorize("hasRole('ROLE_CREATOR') or hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')")
+    @GetMapping("/read")
+    public ResponseEntity<Object> readSection(@RequestParam long idPostData, @RequestParam int idSection){
+        if(!postDataService.existsPostDataByIdPost(idPostData)){
+            return new ResponseEntity<>(new MensajeDTO("Post Data does not exist"), HttpStatus.BAD_REQUEST);
+        }
+        if(!sectionService.existsSectionByIdPostData(idPostData, idSection)){
+            return new ResponseEntity<>(new MensajeDTO("Post Data Section does not exist"), HttpStatus.BAD_REQUEST);
+        }
 
+        SectionDTO sectionDTO = sectionService.readSection(idPostData, idSection);
+        return new ResponseEntity<>(sectionDTO, HttpStatus.CREATED);
 
+    }
+
+    //Read all
+    @PreAuthorize("hasRole('ROLE_CREATOR') or hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')")
+    @GetMapping("/readAll")
+    public ResponseEntity<Object> readAllSections(@RequestParam long idPostData){
+        if(!postDataService.existsPostDataByIdPost(idPostData)){
+            return new ResponseEntity<>(new MensajeDTO("Post Data does not exist"), HttpStatus.BAD_REQUEST);
+        }
+
+        List<SectionDTO> listSectionsDTO = sectionService.readAllSections(idPostData);
+
+        return new ResponseEntity<>(listSectionsDTO, HttpStatus.CREATED);
+    }
     //Update
 
 

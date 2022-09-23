@@ -8,7 +8,7 @@ public class SectionsElement {
 
     private String nameSection;
 
-    private boolean isVisibleName;
+    private boolean visible;
 
     private List<HeadersElement> listHeaders;
 
@@ -17,10 +17,10 @@ public class SectionsElement {
     public SectionsElement() {
     }
 
-    public SectionsElement(int idSection, String nameSection, boolean isVisibleName, List<HeadersElement> listHeaders, List<ParagraphsElement> listParagraphs) {
+    public SectionsElement(int idSection, String nameSection, boolean visible, List<HeadersElement> listHeaders, List<ParagraphsElement> listParagraphs) {
         this.idSection = idSection;
         this.nameSection = nameSection;
-        this.isVisibleName = isVisibleName;
+        this.visible = visible;
         this.listHeaders = listHeaders;
         this.listParagraphs = listParagraphs;
     }
@@ -41,13 +41,6 @@ public class SectionsElement {
         this.nameSection = nameSection;
     }
 
-    public boolean isVisibleName() {
-        return isVisibleName;
-    }
-
-    public void setVisibleName(boolean visibleName) {
-        isVisibleName = visibleName;
-    }
 
     public List<HeadersElement> getListHeaders() {
         return listHeaders;
@@ -63,5 +56,13 @@ public class SectionsElement {
 
     public void setListParagraphs(List<ParagraphsElement> listParagraphs) {
         this.listParagraphs = listParagraphs;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }

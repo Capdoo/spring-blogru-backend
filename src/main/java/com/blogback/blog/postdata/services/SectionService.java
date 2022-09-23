@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,6 +47,44 @@ public class SectionService {
 
         mongoTemplate.findAndModify(query,update, new FindAndModifyOptions().returnNew(true), PostData.class);
 
+    }
+
+    //READ SINGLE SECTION
+    public SectionDTO readSection(long idPostData, int idSection){
+        PostData postData = postDataRepository.findPostDataByIdPostData(idPostData).get();
+        List<SectionsElement> sectionsElementList = postData.getSections();
+
+        SectionDTO sectionDTO = new SectionDTO();
+        for(SectionsElement p:sectionsElementList){
+            if(p.getIdSection() == idSection){
+                    sectionDTO.setIdSection(p.getIdSection());
+                    sectionDTO.setNameSection(p.getNameSection());
+                    sectionDTO.setListHeaders(p.getListHeaders());
+                    sectionDTO.setListParagraphs(p.getListParagraphs());
+                    sectionDTO.setIdPostData(idPostData);
+                    sectionDTO.setVisible(p.isVisible());
+            }
+        }
+        return sectionDTO;
+    }
+
+    public List<SectionDTO> readAllSections(long idPostData){
+        List<SectionDTO> newListSectionsDTO = new ArrayList<SectionDTO>();
+
+        PostData postData = postDataRepository.findPostDataByIdPostData(idPostData).get();
+        List<SectionsElement> sectionsElementList = postData.getSections();
+
+        for(SectionsElement p:sectionsElementList){
+            SectionDTO sectionDTO = new SectionDTO();
+                sectionDTO.setIdSection(p.getIdSection());
+                sectionDTO.setIdPostData(idPostData);
+                sectionDTO.setNameSection(p.getNameSection());
+                sectionDTO.setListHeaders(p.getListHeaders());
+                sectionDTO.setListParagraphs(p.getListParagraphs());
+                sectionDTO.setVisible(p.isVisible());
+            newListSectionsDTO.add(sectionDTO);
+        }
+        return newListSectionsDTO;
     }
 
     public boolean existsSectionByIdPostData(long idPostData, int idSection){
