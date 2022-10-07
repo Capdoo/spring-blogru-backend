@@ -16,6 +16,7 @@ import java.util.List;
 @Configuration
 public class SwaggerConfig implements WebMvcConfigurer {
 
+    //Details for each field
     private ApiInfo apiInfo(){
         return new ApiInfo(
                 "Blog Application",
