@@ -17,7 +17,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
+import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 
 
 @Configuration
@@ -64,7 +64,13 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
+                .antMatchers(
+                        "/auth/**",
+                        "/v2/api-docs/**",
+                        "/swagger-ui/**",
+                        "/swagger-resources/**",
+                        "/configuration/**"
+                ).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)

@@ -16,5 +16,4 @@ public class DatabaseConfig {
     private Environment env;
 
 
-
 }

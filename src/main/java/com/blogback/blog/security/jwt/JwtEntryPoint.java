@@ -15,7 +15,7 @@ import java.io.IOException;
 public class JwtEntryPoint implements AuthenticationEntryPoint {
 
 
-    private final static Logger logger = LoggerFactory.getLogger(com.example.demo.security.jwt.JwtEntryPoint.class);
+    private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
     @Override
     public void commence(HttpServletRequest req, HttpServletResponse res,
