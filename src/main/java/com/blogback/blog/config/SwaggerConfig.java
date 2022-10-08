@@ -24,8 +24,8 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 "2.0",
                 "Terminos y condiciones",
                 "Rafael Santiago",
-                "www.linkedin.com/rafael-nontol-lozano",
-                "rafael.nontol@unmsm.edu.pe");
+                "Rafael Santiago Ñontol Lozano",
+                "www.linkedin.com/rafael-nontol-lozano");
     }
 
     private ApiKey apiKey(){
