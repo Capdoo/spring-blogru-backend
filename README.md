@@ -4,7 +4,7 @@ Proyecto backend para el proyecto Blogru
 
 ## Despliegue
 
-* [Blogru Deploy Swagger](https://spring-blogru-backend.herokuapp.com/swagger-ui/index.html)
+* [Blogru Deploy Swagger](https://spring-blogru-backend-f-production.up.railway.app/swagger-ui/index.html#/)
 
 ## Descripción
 
